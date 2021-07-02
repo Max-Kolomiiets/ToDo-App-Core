@@ -1,0 +1,38 @@
+﻿@model ToDoAppCore.Models.TaskModel
+@{
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="AddOrEdit" asp-route-id="@Model.Id" onsubmit="return jQueryAjaxPost(this);">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateIssue" class="control-label"></label>
+                <input asp-for="DateIssue" class="form-control" type="date" value="@(Model.Id == 0 ? @DateTime.Now.ToString("yyyy-MM-dd") : Model.DateIssue.ToString("yyyy-MM-dd") )" />
+                <span asp-validation-for="DateIssue" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateEnd" class="control-label"></label>
+                <input asp-for="DateEnd" class="form-control" type="date"  value="@(Model.Id == 0 ? @DateTime.Now.ToString("yyyy-MM-dd") : Model.DateEnd.ToString("yyyy-MM-dd") )"/>
+                <span asp-validation-for="DateEnd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6 offset-md-3">
+                    <input type="submit" value="Submit" class="btn btn-primary btn-block" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
